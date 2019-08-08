@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="description" content="React - Compartilhando Estado Entre Componentes" />
+    <meta name="author" content="Jefferson Mariano de Souza" />
+    <link rel="manifest" href="manifest.json" />
+
+    <title>React - Compartilhando Estado Entre Componentes</title>
+
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/reveal.css" />
+    <link rel="stylesheet" href="css/theme/moon.css" />
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/monokai.css" />
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+    <!--[if lt IE 9]>
+      <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h1>React</h1>
+          <h2>Compartilhando Estado Entre Componentes</h2>
+          <br />
+          <p>Jefferson Mariano de Souza</p>
+        </section>
+        <section>
+          <h2>Revisão rápida sobre React</h2>
+          <section>
+            <h3>O que é React?</h3>
+          </section>
+          <section>
+            <h3>Para que serve?</h3>
+            <!-- TODO incluir imagem -->
+          </section>
+          <section>
+            <h3>JSX</h3>
+          </section>
+          <section>
+            <h3>Estado</h3>
+          </section>
+          <section>
+            <h3>Propriedades</h3>
+          </section>
+        </section>
+        <section>
+          <h2>Um pouco mais sobre Estado</h2>
+          <p>
+            O estado do componente deve ter só informações que aquele componente (ou seus filhos) necessita
+          </p>
+        </section>
+        <section data-background="assets/img.png">
+          <p>redux e derivados são utilizados para armazenar estados globais.</p>
+          <aside class="notes">
+            redux e derivados são utilizados para armazenar estados globais.
+          </aside>
+        </section>
+        <section></section>
+        <section>
+          <aside class="notes">
+            <!-- 
+              https://www.youtube.com/watch?v=u99tNt3TZf8
+
+
+Se você bate numa API na pagina X, pega um dado, salva ele, depois navega para uma página Z e precisa desse dado, ou você tem que passar esse dado por parametro até a pagina Z (isso pode ficar confuso se forem muitos dados) ou você salva num estado global e acessa esse estado ná pagina Z
+
+
+props = imutaveis
+
+
+===========================================================
+
+pode ser usado em qualquer aplicacao js
+
+serve para gerenciar os dados / informacoes da aplicacao
+ - entrada de dados do usuario
+ - dados de uma api
+ - ações do usuário
+
+controlar como a aplicacao deve se comportar baseado na mudança destes dados
+
+quando usar?
+
+- compartilhar estado entre componentes
+- centralizar as regras de negocio da aplicacao
+
+informações transitam entre componentes
+
+agir com efeitos colaterais
+- efeitos colaterais:
+  acao em um componente faz outro componente reagir (clique de um botao faz dados serem carregados)
+
+
+
+
+context api resolve o que?
+- passagem de props para diversos componentes
+
+
+https://www.cabotsolutions.com/2017/01/detailed-study-flux-react-js-application-architecture
+
+
+Global State/Store Unified Theory
+
+- A store records items in different ways
+- you can read from store directly or using selectors
+- you can write/update store directly or using updaters
+- components can subscribe to store to receive updates
+
+
+React Context
+- you decide what do use as your store
+- you read from context using useContext
+- you write/update context using some provided updater function from useContext
+- you subscribe your components using useContext
+
+
+Redux
+- redux has one store that can be flattened (normalizr) or nested
+- you can read using selectors, simple functions that access store data (check reselect)
+- you can write/update using dispatch actions, you "can't" modify store directly
+- you subscribe using HOC or hooks
+
+
+MobX
+- you can have many stores
+- you use @observer, or HOC or hooks to read data from store
+- you mutate your observed values to modify store
+- you subscribe using @observer or hooks
+
+
+State Charts (XState)
+- you store is a state machine
+- you read using hooks (useMachine), current.matches
+- you write/update state using send/transition commands
+- you subscribe using hooks, or interpret + onTransition
+
+
+@RelayModern 
+- relay store (https://medium.com/@sibelius/relay-modern-the-relay-store-8984cd148798 …) normalizes your graphql data using global id of each node
+- you can read from store using graphql fragments/queries
+- you can write/update using graphql mutations, or updater logic
+- you subscribe with containers or hooks
+
+
+
+https://hackernoon.com/avoiding-accidental-complexity-when-structuring-your-app-state-6e6d22ad5e2a
+             -->
+          </aside>
+        </section>
+        <section data-background="assets/the-end.jpg"></section>
+      </div>
+    </div>
+
+    <script src="js/reveal.js"></script>
+
+    <script>
+      // More info about config & dependencies:
+      // - https://github.com/hakimel/reveal.js#configuration
+      // - https://github.com/hakimel/reveal.js#dependencies
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        center: true,
+        hash: true,
+        transition: 'convex', // none/fade/slide/convex/concave/zoom
+        dependencies: [
+          {
+            src: 'plugin/markdown/marked.js',
+            condition: function() {
+              return !!document.querySelector('[data-markdown]');
+            },
+          },
+          {
+            src: 'plugin/markdown/markdown.js',
+            condition: function() {
+              return !!document.querySelector('[data-markdown]');
+            },
+          },
+          { src: 'plugin/highlight/highlight.js', async: true },
+          { src: 'plugin/search/search.js', async: true },
+          { src: 'plugin/zoom-js/zoom.js', async: true },
+          { src: 'plugin/notes/notes.js', async: true },
+        ],
+      });
+    </script>
+  </body>
+</html>
