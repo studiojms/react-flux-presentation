@@ -11,7 +11,7 @@
 
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/reveal.css" />
-    <link rel="stylesheet" href="css/theme/moon.css" />
+    <link rel="stylesheet" href="css/theme/league.css" />
 
     <!-- Theme used for syntax highlighting of code -->
     <link rel="stylesheet" href="lib/css/monokai.css" />
@@ -33,29 +33,103 @@
       <div class="slides">
         <section>
           <h1>React</h1>
-          <h2>Compartilhando Estado Entre Componentes</h2>
+          <h2>Trabalhando com Estado Compartilhado Entre Componentes</h2>
           <br />
           <p>Jefferson Mariano de Souza</p>
         </section>
-        <section>
+        <section data-background="img/what-is-react.png" data-background-opacity="0.3">
           <h2>Revisão rápida sobre React</h2>
           <section>
             <h3>O que é React?</h3>
+            <aside class="notes">
+              <ul>
+                <li>Lib javascript</li>
+                <li>Foco em produtividade</li>
+              </ul>
+            </aside>
           </section>
           <section>
             <h3>Para que serve?</h3>
-            <!-- TODO incluir imagem -->
+            <aside class="notes">
+              <ul>
+                <li>Coloca uma ordem no desenvolvimento, foco na camada de UI</li>
+                <li>Transforma código JSX em javascript</li>
+                <li>Rapidez no desenvolvimento</li>
+              </ul>
+            </aside>
           </section>
           <section>
-            <h3>JSX</h3>
+            <h3>Como ele funciona?</h3>
+            <aside class="notes">
+              <ul>
+                <li>Virtual DOM</li>
+              </ul>
+            </aside>
+          </section>
+          <section>
+            <img src="img/vdom.png" />
+          </section>
+        </section>
+        <section>
+          <h3>Principais Conceitos</h3>
+        </section>
+        <section data-background="img/jsx.png" data-background-opacity="0.5">
+          <h3>JSX</h3>
+          <aside class="notes">
+            <ul>
+              <li>Transforma código JSX em chamadas de função</li>
+              <li>Código REACT são chamadas de função React.createElement etc.</li>
+            </ul>
+          </aside>
+        </section>
+        <section data-background="img/prop-state.jpg" data-background-opacity="0.25">
+          <section>
+            <h3>Propriedades</h3>
+            <ul>
+              <li>Dados externos</li>
+              <li>Imutáveis</li>
+            </ul>
+            <aside class="notes">
+              <ul>
+                <li>Propriedades passadas para as funções</li>
+                <li>Funções reagem a propriedades diferentes</li>
+              </ul>
+            </aside>
           </section>
           <section>
             <h3>Estado</h3>
+            <ul>
+              <li>Dados armazenados pelo componente</li>
+              <li>Pode ser mutável, gerenciado pelo componente</li>
+            </ul>
           </section>
-          <section>
-            <h3>Propriedades</h3>
-          </section>
+          <section></section>
         </section>
+        <section data-background="img/web-app-sample.png" data-background-opacity="0.3">
+          <h3>Exemplos de componentes</h3>
+        </section>
+        <section>
+          <img src="img/react-app-1.png" />
+        </section>
+        <section>
+          <img src="img/react-app-2.jpeg" />
+        </section>
+        <section>
+          <img src="img/react-app-3.png" />
+        </section>
+
+        <!-- TODO mostrar dificuldade em criar aplicação que compartilha estado -->
+        <!-- TODO introduzir FLUX -->
+
+        <!-- 
+          MVC - mostrar como é o modelo atual
+          Flux - introduzir o flux
+          Implementações de flux - por que tantas
+          - Redux
+          - Mobx
+          Criando uma aplicação com controle de estado - flux
+         -->
+
         <section>
           <h2>Um pouco mais sobre Estado</h2>
           <p>
@@ -161,7 +235,12 @@ State Charts (XState)
 
 
 https://hackernoon.com/avoiding-accidental-complexity-when-structuring-your-app-state-6e6d22ad5e2a
-             -->
+
+interessante: imagens e conceitos ->
+
+https://www.cabotsolutions.com/2017/01/detailed-study-flux-react-js-application-architecture
+
+-->
           </aside>
         </section>
         <section data-background="assets/the-end.jpg"></section>
