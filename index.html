@@ -15,7 +15,84 @@
 
     <!-- Theme used for syntax highlighting of code -->
     <link rel="stylesheet" href="lib/css/monokai.css" />
+    <style>
+      .reveal .slides section .fragment.current-only {
+        opacity: 1;
+        visibility: visible;
+        display: none;
+      }
+      .reveal .slides section .fragment.current-only.current-fragment {
+        display: block;
+      }
 
+      /* Solarized Light theme */
+      .line {
+        display: block;
+      }
+      .line.focus {
+        background: #fdf6e3;
+        color: #657b83;
+      }
+      .line.focus .hljs-comment,
+      .line.focus .hljs-quote {
+        color: #93a1a1;
+      }
+      .line.focus .hljs-keyword,
+      .line.focus .hljs-selector-tag,
+      .line.focus .hljs-addition {
+        color: #859900;
+      }
+      .line.focus .hljs-number,
+      .line.focus .hljs-string,
+      .line.focus .hljs-meta .hljs-meta-string,
+      .line.focus .hljs-literal,
+      .line.focus .hljs-doctag,
+      .line.focus .hljs-regexp {
+        color: #2aa198;
+      }
+      .line.focus .hljs-title,
+      .line.focus .hljs-section,
+      .line.focus .hljs-name,
+      .line.focus .hljs-selector-id,
+      .line.focus .hljs-selector-class {
+        color: #268bd2;
+      }
+      .line.focus .hljs-attribute,
+      .line.focus .hljs-attr,
+      .line.focus .hljs-variable,
+      .line.focus .hljs-template-variable,
+      .line.focus .hljs-class .hljs-title,
+      .line.focus .hljs-type {
+        color: #b58900;
+      }
+      .line.focus .hljs-symbol,
+      .line.focus .hljs-bullet,
+      .line.focus .hljs-subst,
+      .line.focus .hljs-meta,
+      .line.focus .hljs-meta .hljs-keyword,
+      .line.focus .hljs-selector-attr,
+      .line.focus .hljs-selector-pseudo,
+      .line.focus .hljs-link {
+        color: #cb4b16;
+      }
+      .line.focus .hljs-built_in,
+      .line.focus .hljs-deletion {
+        color: #dc322f;
+      }
+      .line.focus .hljs-formula {
+        background: #eee8d5;
+      }
+      .line.focus .hljs-emphasis {
+        font-style: italic;
+      }
+      .line.focus .hljs-strong {
+        font-weight: bold;
+      }
+
+      .yellow-slide .line.focus:nth-child(2) {
+        background: yellow;
+      }
+    </style>
     <!-- Printing and PDF exports -->
     <script>
       var link = document.createElement('link');
@@ -31,9 +108,9 @@
   <body>
     <div class="reveal">
       <div class="slides">
-        <section>
+        <section data-background="img/react-logo.jpeg" data-background-opacity="0.7">
           <h1>React</h1>
-          <h2>Trabalhando com Estado Compartilhado Entre Componentes</h2>
+          <h2>Compartilhando Estado Entre Componentes</h2>
           <br />
           <p>Jefferson Mariano de Souza</p>
         </section>
@@ -67,10 +144,10 @@
             </aside>
           </section>
           <section>
-            <img src="img/vdom.png" />
+            <img src="img/virtual-dom.png" />
           </section>
         </section>
-        <section>
+        <section data-background="img/concept.png" data-background-opacity="0.2">
           <h3>Principais Conceitos</h3>
         </section>
         <section data-background="img/jsx.png" data-background-opacity="0.5">
@@ -82,7 +159,60 @@
             </ul>
           </aside>
         </section>
-        <section data-background="img/prop-state.jpg" data-background-opacity="0.25">
+        <section data-markdown>
+          <script type="text/template">
+                        ### Objetivo: Renderizar o código
+
+            ```html
+            <div>
+              <h1>Contacts</h1>
+              <ul>
+                <li><a href="mailto:test1@test.com">test1@test.com</a></li>
+                <li><a href="mailto:test2@test.com">test2@test.com</a></li>
+              </ul>
+            </div>
+            ```
+          </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+                        ### Com JSX
+            ```html
+            return (
+              <div>
+                <h1>Contacts</h1>
+                <ul>
+                  <li><a href="mailto:test1@test.com">test1@test.com</a></li>
+                  <li><a href="mailto:test2@test.com">test2@test.com</a></li>
+                </ul>
+              </div>
+            );
+            ```
+                        <span class="fragment" data-code-focus="2-8"></span>
+                        <span class="fragment" data-code-focus="1,9"></span>
+          </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+                        ### Sem JSX
+            ```js
+            return React.createElement('div', {},
+              React.createElement('h1', {}, 'Contacts'),
+              React.createElement('ul', {},
+                React.createElement('li', {},
+                  React.createElement('a', {href: 'mailto:test1@test.com'}, 'test1@test.com')
+                ),
+                React.createElement('li', {},
+                  React.createElement('a', {href: 'mailto:test2@test.com'}, 'test2@test.com')
+                )
+              )
+            );
+            ```
+                        <span class="fragment" data-code-focus="2"></span>
+                        <span class="fragment" data-code-focus="2-10"></span>
+          </script>
+        </section>
+        <section data-background="img/prop-state.jpg" data-background-opacity="0.15">
           <section>
             <h3>Propriedades</h3>
             <ul>
@@ -103,7 +233,14 @@
               <li>Pode ser mutável, gerenciado pelo componente</li>
             </ul>
           </section>
-          <section></section>
+          <section>
+            <img class="fragment" src="img/react-data-flow.jpg" />
+            <aside class="notes">
+              <ul>
+                <li>Exemplo de props e state</li>
+              </ul>
+            </aside>
+          </section>
         </section>
         <section data-background="img/web-app-sample.png" data-background-opacity="0.3">
           <h3>Exemplos de componentes</h3>
@@ -114,10 +251,254 @@
         <section>
           <img src="img/react-app-2.jpeg" />
         </section>
+        <section data-background="img/state-without-flux.png" data-background-opacity="0.3">
+          <h2>Estado compartilhado</h2>
+          <section>
+            <img class="fragment" src="img/data-flow-react.jpg" height="500" />
+            <aside class="notes">
+              <ul>
+                <li>
+                  bate em uma API -> pega dados do usuário logado
+                </li>
+                <li>
+                  salva o dado -> navega para a página de Compras
+                </li>
+                <li>
+                  passar esse dado por parametro (confuso)
+                </li>
+                <li>
+                  salva em estado global e acessa
+                </li>
+              </ul>
+            </aside>
+          </section>
+          <section>
+            <img src="img/state-without-flux.png" />
+          </section>
+          <section>
+            <ul>
+              <li>Partes da aplicação se comunicam</li>
+              <li>Dado precisa ser sincronizado entre componentes</li>
+            </ul>
+          </section>
+        </section>
         <section>
-          <img src="img/react-app-3.png" />
+          <h2>Como resolver este problema?</h2>
+          <p>Como coordenar as ações para executarem em um fluxo?</p>
+        </section>
+        <section>
+          <h2>MVC</h2>
+          <section>
+            <img src="img/mvc-details.png" />
+          </section>
+          <section>
+            <img src="img/mvc.png" />
+            <aside class="notes">
+              <ul>
+                <li>
+                  Problemas usando em libs js [DATA BINDING]
+                </li>
+                <li>
+                  view acessando model
+                </li>
+                <li>
+                  situações complicadas de debug
+                </li>
+              </ul>
+              What the problem with MVW? MVW is easy to manage in a simple application, with few models/controllers. But
+              we can easily start to witness problems as we grow in size with the following problems: There is need when
+              models/controllers communicate with each others (through a service layer probably), and these modules
+              changes the states of each others, and the more controllers, the more easy to lose control of who changed
+              the state of a controller. Asynchronous network calls to retrieve data add uncertainty of when the model
+              will be changed or modified, and imagine the user changing the UI while a callback from asynchronous call
+              comeback, then we will have “nondeterministic” status of the UI. Change state/model has another layer of
+              complexity which is the mutation. When to consider the state or model is changed and how to build tools to
+              help recognize the mutation. Adding to that if the application is a collaborative applications, (like
+              google docs for examples) where lots of data changes happening in real-time. No way to do undo (travel
+              back in time) easily without adding so much extra code. We can summarize the above as : “There is no
+              single source of truth of the applications at any given time.”, and at any give time we cannot know how
+              the UI will be, and this create non-determinism UI.
+            </aside>
+          </section>
+        </section>
+        <section data-background="img/flux-logo.jpg" data-background-opacity="0.5">
+          <h2>Flux</h2>
+          <ul>
+            <li class="fragment">Arquitetura</li>
+            <li class="fragment">Define um fluxo único de dados</li>
+          </ul>
+          <aside class="notes">
+            <ul>
+              <li>Pode ser usado em qualquer aplicação JS (é apenas a arquitetura)</li>
+            </ul>
+          </aside>
+        </section>
+        <section data-background="img/flux-logo.jpg" data-background-opacity="0.5">
+          <h2>Para que serve?</h2>
+          <p>Gerenciar os dados da aplicação</p>
+          <ul>
+            <li>entrada de dados do usuario</li>
+            <li>dados de uma api</li>
+            <li>ações do usuário</li>
+          </ul>
+          <p>Controlar como a aplicação deve se comportar com base na mudança destes dados</p>
+        </section>
+        <section data-background="img/flux-logo.jpg" data-background-opacity="0.5">
+          <h2>Quando devo usar?</h2>
+          <ul>
+            <li>Compartilhar estado entre componentes</li>
+            <li>Centralizar as regras de negócio da aplicação</li>
+            <li>Agir com efeitos colaterais</li>
+          </ul>
+          <aside class="notes">
+            <ul>
+              <li>informações transitam entre componentes</li>
+              <li>
+                Efeito colateral: ação em um componente faz outro componente reagir (clique de um botão faz dados serem
+                carregados)
+              </li>
+            </ul>
+          </aside>
+        </section>
+        <section data-background="img/flux-logo.jpg" data-background-opacity="0.5">
+          <img src="img/flux-architecture.png" />
+          <aside class="notes">
+            <ul>
+              <li>Action - Ação disparada (realizada pelo usuário ou não)</li>
+              <li>Dispatcher - item que recebe uma ação e chama a store</li>
+              <li>Store - repositório de dados</li>
+              <li>View - camada de apresentação</li>
+            </ul>
+          </aside>
+        </section>
+        <section data-background="img/flux-logo.jpg" data-background-opacity="0.5">
+          <img src="img/flux-component-tree.svg" />
         </section>
 
+        <section data-background="img/flux-implementations-horizontal.jpg" data-background-opacity="0.4">
+          <h2>Implementações de Flux</h2>
+          <img src="img/flux-implementations-horizontal.jpg" height="500" />
+          <aside class="notes">
+            <ul>
+              <li>XState</li>
+              <li>Alt</li>
+              <li>Fluxxor</li>
+              <li>Reflux</li>
+              <li>Redux</li>
+              <li>Mobx</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <h3>Exemplo de Implementação</h3>
+          <div>
+            <ul>
+              <li>Adicionar items a uma lista</li>
+            </ul>
+          </div>
+          <div>
+            <img src="img/items-list.gif" />
+          </div>
+        </section>
+        <section data-background="img/flux-logo.jpg" data-background-opacity="0.3">
+          <h2>Sem Usar Libs</h2>
+          <section></section>
+          <section>
+            <h3>Vantagens</h3>
+            <ul>
+              <li>Aprendizado</li>
+            </ul>
+          </section>
+          <section>
+            <h3>Desvantagens</h3>
+            <ul>
+              <li>Código repetitivo</li>
+              <li>Refazer algo que já existe</li>
+            </ul>
+          </section>
+          <section>
+            <h3>Exemplo</h3>
+            <div>
+              <ul>
+                <li>Adicionar items a uma lista</li>
+              </ul>
+            </div>
+            <div>
+              <img src="img/items-list.gif" />
+            </div>
+          </section>
+          <section data-markdown>
+            <script type="text/template">
+                        ### Page.js
+
+              ```js
+              class MyPage extends React.Component {
+                componentDidMount() {
+                  MyStore.list();
+                }
+
+                render() {
+                  //...
+                  <input type="text" onChange={e =>
+                    Actions.setNewItemText(e.target.value)
+                  } ... />
+                  <button onClick={() => Actions.addItem(getItem())} ... />
+                  //...
+                }
+              }
+              ```
+              <span class="fragment" data-code-focus="3"></span>
+              <span class="fragment" data-code-focus="11"></span>
+            </script>
+          </section>
+          <section data-markdown>
+            <script type="text/template">
+                          ### Actions.js
+                          ```js
+              export default {
+                addItem(item) {
+                  dispatch({
+                    actionType: 'ADD_ITEM', item: item
+                  });
+                }
+              }
+              ```
+              <span class="fragment" data-code-focus="4"></span>
+            </script>
+          </section>
+          <section data-markdown>
+            <script type="text/template">
+                            ### ItemStore.js
+              ```js
+                let items = [];
+
+                const ItemStore = Object.assign({}, EventEmitter.prototype, {
+                //outros métodos
+
+                  dispatcherIndex: register( function( action ){
+                    switch(action.actionType){
+
+                      case 'ADD_ITEM':
+                        items.push(action.item)
+                        ItemStore.emitChange();
+                        break;
+
+                        //...
+                    }
+                  })
+                });
+                ```
+                <span class="fragment" data-code-focus="4"></span>
+                <span class="fragment" data-code-focus="10-12"></span>
+            </script>
+          </section>
+          <section data-markdown>
+            ### Resumo - Definir chamada na página - Definir Actions - Definir Store
+          </section>
+        </section>
+
+        <!-- http://slides.com/trodrigues/flux-implementations -->
         <!-- TODO mostrar dificuldade em criar aplicação que compartilha estado -->
         <!-- TODO introduzir FLUX -->
 
@@ -131,18 +512,124 @@
          -->
 
         <section>
-          <h2>Um pouco mais sobre Estado</h2>
-          <p>
-            O estado do componente deve ter só informações que aquele componente (ou seus filhos) necessita
-          </p>
+          <h2>Reflux</h2>
+          <img src="img/reflux-logo.png" />
+          <ul>
+            <li>Uma das implementações mais populares</li>
+            <li>Não possui a figura do dispatcher</li>
+            <li>Cada action é um dispatcher</li>
+          </ul>
         </section>
-        <section data-background="assets/img.png">
-          <p>redux e derivados são utilizados para armazenar estados globais.</p>
-          <aside class="notes">
-            redux e derivados são utilizados para armazenar estados globais.
-          </aside>
+        <section>
+          <h2>Reflux</h2>
+          <img src="img/reflux-diagram.png" />
         </section>
-        <section></section>
+        <section data-markdown>
+          <script type="text/template">
+                      ### Reflux
+                      #### Actions.js
+
+            ```js
+            const Actions = Reflux.createActions([
+              'addItem'
+            ]);
+            ```
+          </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+                        ### Reflux
+                        #### ItemStore.js
+            ```js
+            class ItemStore extends Reflux.Store {
+              constructor() {
+                super();
+                this.state = {items: []};
+                this.listenables = Actions;
+              }
+
+              addItem(item) {
+                this.setState({ items: [...this.state.items, item] });
+              }
+            };
+            ```
+            <span class="fragment" data-code-focus="5-6"></span>
+            <span class="fragment" data-code-focus="10"></span>
+          </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+                        ### Reflux
+                        #### MyPage.js
+
+            ```js
+            class MyPage extends Reflux.Component {
+                constructor(props) {
+                    super(props);
+                    this.state = {}; // a store adiciona estado ao componente
+                    this.store = ItemStore; // <- só precisa associar
+                }
+
+                render() {
+                    const items = this.state.items; // <- items vem de ItemsStore
+                    return (
+                      <input type="text" onChange={e =>
+                       Actions.setNewItemText(e.target.value)
+                      } ... />
+                      <button onClick={() => Actions.addItem(getItem())} ... />
+                      <ul>
+                       {items.map(item => (<li>{item}</li>))}
+                      </ul>
+                }
+            }
+            ```
+            <span class="fragment" data-code-focus="4-5"></span>
+            <span class="fragment" data-code-focus="9"></span>
+            <span class="fragment" data-code-focus="11-14"></span>
+          </script>
+        </section>
+        <section data-background="img/redux-background.png" data-background-opacity="0.1">
+          <section>
+            <div>
+              <ul>
+                <li class="fragment">Criado por Dan Abramov</li>
+                <li class="fragment">Foi adotado pelo facebook como referência de flux</li>
+                <li class="fragment">Rendeu um emprego no core team do React ao criador</li>
+              </ul>
+            </div>
+            <div class="fragment">
+              <img src="img/dan-abramov-photo.png" height="300" />
+            </div>
+            <!-- Redux
+- redux has one store that can be flattened (normalizr) or nested
+- you can read using selectors, simple functions that access store data (check reselect)
+- you can write/update using dispatch actions, you "can't" modify store directly
+- you subscribe using HOC or hooks -->
+          </section>
+          <section data-background="img/redux-background.png" data-background-opacity="0.1">
+            <ul>
+              <li>Single Store</li>
+              <li>Estado global e imutável</li>
+            </ul>
+          </section>
+          <section>
+            <img src="img/redux.gif" />
+          </section>
+          <!-- https://codesandbox.io/s/github/GantMan/ReactStateMuseum/tree/master/React/redux -->
+        </section>
+        <section data-background="img/mobx.png" data-background-opacity="0.3" data-background-size="55%">
+          <h2>Mobx</h2>
+        </section>
+        <section>
+          MobX - you can have many stores - you use @observer, or HOC or hooks to read data from store - you mutate your
+          observed values to modify store - you subscribe using @observer or hooks
+        </section>
+
+        <section>
+          <h2>React Context API</h2>
+          <img src="img/context-api.png" />
+        </section>
+
         <section>
           <aside class="notes">
             <!-- 
@@ -273,6 +760,13 @@ https://www.cabotsolutions.com/2017/01/detailed-study-flux-react-js-application-
             },
           },
           { src: 'plugin/highlight/highlight.js', async: true },
+          {
+            src: 'plugin/code-focus/reveal-code-focus.js',
+            async: true,
+            callback: function() {
+              RevealCodeFocus();
+            },
+          },
           { src: 'plugin/search/search.js', async: true },
           { src: 'plugin/zoom-js/zoom.js', async: true },
           { src: 'plugin/notes/notes.js', async: true },
