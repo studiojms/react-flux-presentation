@@ -108,7 +108,7 @@
   <body>
     <div class="reveal">
       <div class="slides">
-        <section data-background="img/react-logo.jpeg" data-background-opacity="0.7">
+        <section data-background="img/react-logo.jpeg" data-background-opacity="0.6">
           <h1>React</h1>
           <h2>Compartilhando Estado Entre Componentes</h2>
           <br />
@@ -161,7 +161,7 @@
         </section>
         <section data-markdown>
           <script type="text/template">
-                        ### Objetivo: Renderizar o código
+            ### Objetivo: Renderizar o código
 
             ```html
             <div>
@@ -176,7 +176,7 @@
         </section>
         <section data-markdown>
           <script type="text/template">
-                        ### Com JSX
+            ### Com JSX
             ```html
             return (
               <div>
@@ -188,13 +188,13 @@
               </div>
             );
             ```
-                        <span class="fragment" data-code-focus="2-8"></span>
-                        <span class="fragment" data-code-focus="1,9"></span>
+            <span class="fragment" data-code-focus="2-8"></span>
+            <span class="fragment" data-code-focus="1,9"></span>
           </script>
         </section>
         <section data-markdown>
           <script type="text/template">
-                        ### Sem JSX
+            ### Sem JSX
             ```js
             return React.createElement('div', {},
               React.createElement('h1', {}, 'Contacts'),
@@ -430,7 +430,7 @@
           </section>
           <section data-markdown>
             <script type="text/template">
-                        ### Page.js
+              ### Page.js
 
               ```js
               class MyPage extends React.Component {
@@ -444,6 +444,7 @@
                     Actions.setNewItemText(e.target.value)
                   } ... />
                   <button onClick={() => Actions.addItem(getItem())} ... />
+                  <div>
                   //...
                 }
               }
@@ -454,8 +455,8 @@
           </section>
           <section data-markdown>
             <script type="text/template">
-                          ### Actions.js
-                          ```js
+              ### Actions.js
+              ```js
               export default {
                 addItem(item) {
                   dispatch({
@@ -469,7 +470,7 @@
           </section>
           <section data-markdown>
             <script type="text/template">
-                            ### ItemStore.js
+              ### ItemStore.js
               ```js
                 let items = [];
 
@@ -489,12 +490,17 @@
                   })
                 });
                 ```
-                <span class="fragment" data-code-focus="4"></span>
-                <span class="fragment" data-code-focus="10-12"></span>
+                <span class="fragment" data-code-focus="3"></span>
+                <span class="fragment" data-code-focus="9-11"></span>
             </script>
           </section>
           <section data-markdown>
-            ### Resumo - Definir chamada na página - Definir Actions - Definir Store
+            ### Resumo 
+            - Definir chamada na página
+            
+            - Definir Actions 
+            
+            - Definir Store
           </section>
         </section>
 
@@ -511,87 +517,14 @@
           Criando uma aplicação com controle de estado - flux
          -->
 
-        <section>
-          <h2>Reflux</h2>
-          <img src="img/reflux-logo.png" />
-          <ul>
-            <li>Uma das implementações mais populares</li>
-            <li>Não possui a figura do dispatcher</li>
-            <li>Cada action é um dispatcher</li>
-          </ul>
-        </section>
-        <section>
-          <h2>Reflux</h2>
-          <img src="img/reflux-diagram.png" />
-        </section>
-        <section data-markdown>
-          <script type="text/template">
-                      ### Reflux
-                      #### Actions.js
-
-            ```js
-            const Actions = Reflux.createActions([
-              'addItem'
-            ]);
-            ```
-          </script>
-        </section>
-        <section data-markdown>
-          <script type="text/template">
-                        ### Reflux
-                        #### ItemStore.js
-            ```js
-            class ItemStore extends Reflux.Store {
-              constructor() {
-                super();
-                this.state = {items: []};
-                this.listenables = Actions;
-              }
-
-              addItem(item) {
-                this.setState({ items: [...this.state.items, item] });
-              }
-            };
-            ```
-            <span class="fragment" data-code-focus="5-6"></span>
-            <span class="fragment" data-code-focus="10"></span>
-          </script>
-        </section>
-        <section data-markdown>
-          <script type="text/template">
-                        ### Reflux
-                        #### MyPage.js
-
-            ```js
-            class MyPage extends Reflux.Component {
-                constructor(props) {
-                    super(props);
-                    this.state = {}; // a store adiciona estado ao componente
-                    this.store = ItemStore; // <- só precisa associar
-                }
-
-                render() {
-                    const items = this.state.items; // <- items vem de ItemsStore
-                    return (
-                      <input type="text" onChange={e =>
-                       Actions.setNewItemText(e.target.value)
-                      } ... />
-                      <button onClick={() => Actions.addItem(getItem())} ... />
-                      <ul>
-                       {items.map(item => (<li>{item}</li>))}
-                      </ul>
-                }
-            }
-            ```
-            <span class="fragment" data-code-focus="4-5"></span>
-            <span class="fragment" data-code-focus="9"></span>
-            <span class="fragment" data-code-focus="11-14"></span>
-          </script>
-        </section>
         <section data-background="img/redux-background.png" data-background-opacity="0.1">
           <section>
+            <h2>Redux</h2>
+
             <div>
               <ul>
+                <li class="fragment">Implementação mais popular de Flux</li>
+                <li class="fragment">Baseia-se no conceito de imutabilidade</li>
                 <li class="fragment">Criado por Dan Abramov</li>
                 <li class="fragment">Foi adotado pelo facebook como referência de flux</li>
                 <li class="fragment">Rendeu um emprego no core team do React ao criador</li>
@@ -600,38 +533,344 @@
             <div class="fragment">
               <img src="img/dan-abramov-photo.png" height="300" />
             </div>
-            <!-- Redux
-- redux has one store that can be flattened (normalizr) or nested
-- you can read using selectors, simple functions that access store data (check reselect)
-- you can write/update using dispatch actions, you "can't" modify store directly
-- you subscribe using HOC or hooks -->
           </section>
           <section data-background="img/redux-background.png" data-background-opacity="0.1">
+            <h2>Redux - Características</h2>
             <ul>
-              <li>Single Store</li>
-              <li>Estado global e imutável</li>
+              <li class="fragment">Single Store para toda a aplicação</li>
+              <li class="fragment">Estado global e imutável</li>
+              <li class="fragment">Não pode-se alterar dados na store diretamente</li>
+              <li class="fragment">Leitura feita com funções simples</li>
+              <li class="fragment">Inscrição em atualizações realizadas através de HOCs</li>
             </ul>
+            <small class="fragment">*HOC: <strong>High Order Component</strong> é uma uma função que recebe um componente e retorna um componente novo.</small>
+            <aside class="notes">
+              High Order Component é uma uma função que recebe um componente e retorna um componente novo.
+            </aside>
           </section>
           <section>
             <img src="img/redux.gif" />
           </section>
           <!-- https://codesandbox.io/s/github/GantMan/ReactStateMuseum/tree/master/React/redux -->
         </section>
+        <section>
+          <h3>Exemplo</h3>
+          <div>
+            <ul>
+              <li>Adicionar items a uma lista</li>
+            </ul>
+          </div>
+          <div>
+            <img src="img/items-list.gif" />
+          </div>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+            ### HOC.js
+
+            ```js
+            import React from 'react';
+            import { Provider } from 'react-redux';
+            import Page from './Page';            
+            const store = configureStore();
+            
+            function ReduxPageHoc() {
+              return (
+                <Provider store={store}> <Page /> </Provider>
+              );
+            }
+
+            ```
+            <span class="fragment" data-code-focus="2"></span>
+            <span class="fragment" data-code-focus="5"></span>
+            <span class="fragment" data-code-focus="9"></span>
+          </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+            ### store.js
+
+            ```js
+            import { createStore, applyMiddleware } from 'redux';
+
+            import Reducers from './Reducers';
+            
+            let middleware = [];
+            
+            const configureStore = initialState => {
+              return createStore(Reducers, applyMiddleware(...middleware));
+            };
+            
+            export default configureStore;           
+            ```
+            <span class="fragment" data-code-focus="1"></span>
+            <span class="fragment" data-code-focus="3"></span>
+            <span class="fragment" data-code-focus="7-9"></span>
+          </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+            ### Reducer.js
+
+            ```js
+            const INITIAL_STATE = {
+              items: [],
+              currentText: '',
+            };
+            
+            export function reducer(state = INITIAL_STATE, action) {
+              switch (action.type) {
+                case 'ADD_ITEM':
+                  return {
+                    ...state,
+                    items: [...state.items, state.currentText],
+                    currentText: '',
+                  };
+                case 'CLEAR_ITEMS':
+                  return {
+                    ...state,
+                    items: [],
+                  };
+                case 'CHANGE_TEXT':
+                  return {
+                    ...state,
+                    currentText: action.value,
+                  };
+                default:
+                  return state;
+              }
+            }
+            
+            export default { items: reducer };
+            
+            ```
+            <span class="fragment" data-code-focus="1-4"></span>
+            <span class="fragment" data-code-focus="6"></span>
+            <span class="fragment" data-code-focus="8-13"></span>
+          </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+            ### Page.js
+
+            ```js
+            import React from 'react';
+            import { connect } from 'react-redux';
+            
+            import ActionCreator from './ActionCreator';
+            
+            const { changeText, addItem, clearItems } = ActionCreator;
+            
+            const mapStateToProps = state => ({ 
+              items: state.items.items, 
+              currentText: state.items.currentText 
+            });
+            
+            /**
+             * Envia as funções do ActionCreator para o componente
+             */
+            const mapDispatchToProps = {
+              changeText,
+              addItem,
+              clearItems,
+            };          
+
+            function Page({ items, currentText, addItem, clearItems, changeText }) {
+              //...
+              <input type="text" onChange={changeText} ... />
+              <button onClick={addItem} ... />
+              <div>
+              //...
+            }
+
+            export default connect(
+                  mapStateToProps, 
+                  mapDispatchToProps) (Page);
+            ```
+            <span class="fragment" data-code-focus="2"></span>
+            <span class="fragment" data-code-focus="4"></span>
+            <span class="fragment" data-code-focus="6"></span>
+            <span class="fragment" data-code-focus="8-11"></span>
+            <span class="fragment" data-code-focus="16-20"></span>
+            <span class="fragment" data-code-focus="22"></span>
+            <span class="fragment" data-code-focus="24"></span>
+            <span class="fragment" data-code-focus="25"></span>
+            <span class="fragment" data-code-focus="30-32"></span>
+          </script>
+        </section>   
+        <section data-markdown>
+          <script type="text/template">
+            ### ActionCreator.js
+
+            ```js
+            const ActionCreator = {
+              addItem: () => {
+                return {
+                  type: 'ADD_ITEM',
+                };
+              },
+              clearItems: () => {
+                return {
+                  type: 'CLEAR_ITEMS',
+                };
+              },
+              changeText: value => {
+                return {
+                  type: 'CHANGE_TEXT',
+                  value,
+                };
+              },
+            };
+            
+            export default ActionCreator;
+            ```
+            <span class="fragment" data-code-focus="1"></span>
+            <span class="fragment" data-code-focus="2-6"></span>
+          </script>
+        </section>                        
+        <section data-markdown>
+          <script type="text/template">
+          ### Resumo 
+          
+          - Englobar componente em um ```<Provider>``` <!-- .element: class="fragment" -->
+          - Definir Store <!-- .element: class="fragment" -->
+          - Criar Reducer(s) <!-- .element: class="fragment" -->
+          - Na página, juntar estado e actions (mapStateToProps, mapDispatchToProps) <!-- .element: class="fragment" -->
+          - Definir ActionCreator(s) <!-- .element: class="fragment" -->        
+          </script>
+        </section>
+        <section>
+          <img src="img/redux-flow.webp" />
+        </section>
+
         <section data-background="img/mobx.png" data-background-opacity="0.3" data-background-size="55%">
           <h2>Mobx</h2>
+          <ul>
+            <li class="fragment">biblioteca de gerenciamento de estado</li>
+            <li class="fragment">forma de trabalho parecida com orientação a objetos</li>
+            <li class="fragment">abstrai a complexidade de <strong>Dispatch</strong> e <strong>Notify</strong> das implementações flux</li>
+            <li class="fragment">permite múltiplas stores</li>
+            <li class="fragment">seu uso se baseia no pattern <strong>Observer</strong></li>
+          </ul>
+        </section>
+        <section data-background="img/mobx.png" data-background-opacity="0.3" data-background-size="55%">
+          <h2>Observer Pattern</h2>
+          <img src="img/observer-pattern.png" />
         </section>
         <section>
-          MobX - you can have many stores - you use @observer, or HOC or hooks to read data from store - you mutate your
-          observed values to modify store - you subscribe using @observer or hooks
+          <h3>Exemplo</h3>
+          <div>
+            <ul>
+              <li>Adicionar items a uma lista</li>
+            </ul>
+          </div>
+          <div>
+            <img src="img/items-list.gif" />
+          </div>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+            ### Page.js
+
+            ```js
+            import React from 'react';
+            import { observer } from 'mobx-react';
+
+            @observer
+            class MyPage extends React.Component {
+              render() {
+                //...
+                <input type="text" onChange={e =>
+                  ItemStore.setCurrentText(e.target.value)
+                } 
+                value={ItemStore.currentText} ... />
+                <button onClick={() => ItemStore.addItem()} ... />
+                <div>
+                //...
+              }
+            }
+            ```
+            <span class="fragment" data-code-focus="2"></span>
+            <span class="fragment" data-code-focus="4"></span>
+            <span class="fragment" data-code-focus="9"></span>
+            <span class="fragment" data-code-focus="11"></span>
+            <span class="fragment" data-code-focus="12"></span>
+          </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+            ### ItemStore.js
+            ```js
+            class ItemStore {
+              @observable
+              items = [];
+            
+              @observable
+              currentText = '';
+            
+              @action
+              setCurrentText(text) {
+                this.currentText = text;
+              }
+            
+              @action
+              addItem() {
+                this.items.push({ text: this.currentText });
+                this.setCurrentText('');
+              }
+            
+            }
+            
+            export default new ItemStore();
+              ```
+              <span class="fragment" data-code-focus="2,5"></span>
+              <span class="fragment" data-code-focus="8,13"></span>
+          </script>
+        </section>
+        <section data-background="img/mobx.png" data-background-opacity="0.3" data-background-size="55%">
+          <h2>Resumo</h2>
+          <ul>
+            <li class="fragment">Criar classe que representa Store</li>
+            <li class="fragment">Anotar atributos com <code>@observable</code></li>
+            <li class="fragment">Na página que irá observar as mudanças, anotar com <code>@observer</code></li>
+          </ul>
         </section>
 
         <section>
-          <h2>React Context API</h2>
-          <img src="img/context-api.png" />
+          <h2>Conclusão</h2>
+          <ul>
+            <li class="fragment">Por que usar flux?</li>
+            <div class="fragment">
+              <li>gerenciar informacoes da aplicacao</li>
+              <ul>
+                <li>entrada de dados do usuario</li>
+                <li>dados de uma api</li>
+                <li>ações do usuário</li>
+              </ul>
+            </div>
+          </ul>
         </section>
-
         <section>
+          <h2>Conclusão</h2>
+          <ul>
+            <li class="fragment">Quando usar flux?</li>
+            <ul class="fragment">
+              <li>compartilhar estado entre componentes</li>
+              <li>centralizar as regras de negocio da aplicacao</li>
+              <li>informações transitam entre componentes</li>
+              <li>agir com efeitos colaterais</li>
+            </ul>
+          </ul>
           <aside class="notes">
+            <ul>
+              <li>efeitos colaterais:</li>
+              <ul>
+                <li>ação em um componente faz outro componente reagir</li>
+                <li>clique de um botao faz alguma ação refletir em outros pontos da aplicação</li>
+              </ul>
+            </ul>
+          </aside>
+        </section>
             <!-- 
 conceitos: https://balta.io/blog/angular-redux-ngrx
 
@@ -728,9 +967,11 @@ interessante: imagens e conceitos ->
 https://www.cabotsolutions.com/2017/01/detailed-study-flux-react-js-application-architecture
 
 -->
-          </aside>
+        <section data-background="img/react-logo.jpeg" data-background-opacity="0.4">
+          <h1>THE END</h1>
+          <p>Apresentação disponível em: <a href="http://studiojms.github.io/react-flux-presentation">http://studiojms.github.io/react-flux-presentation</a></p>
+          <p>Implementação exemplo: <a href="https://github.com/studiojms/react-flux">https://github.com/studiojms/react-flux</a></p>
         </section>
-        <section data-background="assets/the-end.jpg"></section>
       </div>
     </div>
 
