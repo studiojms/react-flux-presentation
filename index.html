@@ -127,8 +127,12 @@
           </section>
           <section>
             <h3>Para que serve?</h3>
+            <ul>
+              <li class="fragment">Renderizar componentes</li>
+            </ul>
             <aside class="notes">
               <ul>
+                <li>Renderizar componentes</li>
                 <li>Coloca uma ordem no desenvolvimento, foco na camada de UI</li>
                 <li>Transforma código JSX em javascript</li>
                 <li>Rapidez no desenvolvimento</li>
@@ -147,38 +151,23 @@
             <img src="img/virtual-dom.png" />
           </section>
         </section>
-        <section data-background="img/concept.png" data-background-opacity="0.2">
-          <h3>Principais Conceitos</h3>
-        </section>
-        <section data-background="img/jsx.png" data-background-opacity="0.5">
-          <h3>JSX</h3>
-          <aside class="notes">
-            <ul>
-              <li>Transforma código JSX em chamadas de função</li>
-              <li>Código REACT são chamadas de função React.createElement etc.</li>
-            </ul>
-          </aside>
-        </section>
-        <section data-markdown>
-          <script type="text/template">
-            ### Objetivo: Renderizar o código
-
-            ```html
-            <div>
-              <h1>Contacts</h1>
+        <section>
+          <h2>Principais Conceitos</h2>
+          <section data-background="img/concept.png" data-background-opacity="0.2"></section>
+          <section data-background="img/jsx.png" data-background-opacity="0.5">
+            <h3>JSX</h3>
+            <aside class="notes">
               <ul>
-                <li><a href="mailto:test1@test.com">test1@test.com</a></li>
-                <li><a href="mailto:test2@test.com">test2@test.com</a></li>
+                <li>Transforma código JSX em chamadas de função</li>
+                <li>Código REACT são chamadas de função React.createElement etc.</li>
               </ul>
-            </div>
-            ```
-          </script>
-        </section>
-        <section data-markdown>
-          <script type="text/template">
-            ### Com JSX
-            ```html
-            return (
+            </aside>
+          </section>
+          <section data-markdown>
+            <script type="text/template">
+              ### Objetivo: Renderizar o código
+  
+              ```html
               <div>
                 <h1>Contacts</h1>
                 <ul>
@@ -186,34 +175,50 @@
                   <li><a href="mailto:test2@test.com">test2@test.com</a></li>
                 </ul>
               </div>
-            );
-            ```
-            <span class="fragment" data-code-focus="2-8"></span>
-            <span class="fragment" data-code-focus="1,9"></span>
-          </script>
-        </section>
-        <section data-markdown>
-          <script type="text/template">
-            ### Sem JSX
-            ```js
-            return React.createElement('div', {},
-              React.createElement('h1', {}, 'Contacts'),
-              React.createElement('ul', {},
-                React.createElement('li', {},
-                  React.createElement('a', {href: 'mailto:test1@test.com'}, 'test1@test.com')
-                ),
-                React.createElement('li', {},
-                  React.createElement('a', {href: 'mailto:test2@test.com'}, 'test2@test.com')
+              ```
+            </script>
+          </section>
+          <section data-markdown>
+            <script type="text/template">
+              ### Com JSX
+              ```html
+              return (
+                <div>
+                  <h1>Contacts</h1>
+                  <ul>
+                    <li><a href="mailto:test1@test.com">test1@test.com</a></li>
+                    <li><a href="mailto:test2@test.com">test2@test.com</a></li>
+                  </ul>
+                </div>
+              );
+              ```
+              <span class="fragment" data-code-focus="2-8"></span>
+              <span class="fragment" data-code-focus="1,9"></span>
+            </script>
+          </section>
+          <section data-markdown>
+            <script type="text/template">
+              ### Sem JSX
+              ```js
+              return React.createElement('div', {},
+                React.createElement('h1', {}, 'Contacts'),
+                React.createElement('ul', {},
+                  React.createElement('li', {},
+                    React.createElement('a', {href: 'mailto:test1@test.com'}, 'test1@test.com')
+                  ),
+                  React.createElement('li', {},
+                    React.createElement('a', {href: 'mailto:test2@test.com'}, 'test2@test.com')
+                  )
                 )
-              )
-            );
-            ```
-                        <span class="fragment" data-code-focus="2"></span>
-                        <span class="fragment" data-code-focus="2-10"></span>
-          </script>
-        </section>
-        <section data-background="img/prop-state.jpg" data-background-opacity="0.15">
-          <section>
+              );
+              ```
+              <span class="fragment" data-code-focus="2"></span>
+              <span class="fragment" data-code-focus="2-10"></span>
+  
+              Note: Composite Design Pattern
+            </script>
+          </section>
+          <section data-background="img/prop-state.jpg" data-background-opacity="0.15">
             <h3>Propriedades</h3>
             <ul>
               <li>Dados externos</li>
@@ -226,14 +231,14 @@
               </ul>
             </aside>
           </section>
-          <section>
+          <section data-background="img/prop-state.jpg" data-background-opacity="0.15">
             <h3>Estado</h3>
             <ul>
               <li>Dados armazenados pelo componente</li>
               <li>Pode ser mutável, gerenciado pelo componente</li>
             </ul>
           </section>
-          <section>
+          <section data-background="img/prop-state.jpg" data-background-opacity="0.15">
             <img class="fragment" src="img/react-data-flow.jpg" />
             <aside class="notes">
               <ul>
@@ -241,15 +246,15 @@
               </ul>
             </aside>
           </section>
-        </section>
-        <section data-background="img/web-app-sample.png" data-background-opacity="0.3">
-          <h3>Exemplos de componentes</h3>
-        </section>
-        <section>
-          <img src="img/react-app-1.png" />
-        </section>
-        <section>
-          <img src="img/react-app-2.jpeg" />
+          <section data-background="img/web-app-sample.png" data-background-opacity="0.3">
+            <h3>Exemplos de componentes</h3>
+          </section>
+          <section>
+            <img src="img/react-app-1.png" />
+          </section>
+          <section>
+            <img src="img/react-app-2.jpeg" />
+          </section>  
         </section>
         <section data-background="img/state-without-flux.png" data-background-opacity="0.3">
           <h2>Estado compartilhado</h2>
@@ -296,13 +301,16 @@
             <aside class="notes">
               <ul>
                 <li>
-                  Problemas usando em libs js [DATA BINDING]
+                  Problemas quando há muitos controllers e models
                 </li>
                 <li>
-                  view acessando model
+                  Models e controllers comunicando uns com os outros (perde controle de quem alterou o que)
                 </li>
                 <li>
-                  situações complicadas de debug
+                  Problemas com modificação de estado via requisição à API e usuário mudando tela
+                </li>
+                <li>
+                  Não há uma fonte única de dados da aplicação em determinada situação
                 </li>
               </ul>
               What the problem with MVW? MVW is easy to manage in a simple application, with few models/controllers. But
@@ -435,6 +443,8 @@
               ```js
               class MyPage extends React.Component {
                 componentDidMount() {
+                  MyStore.addChangeListener(this.onChange);
+                  //...
                   MyStore.list();
                 }
 
@@ -449,8 +459,8 @@
                 }
               }
               ```
-              <span class="fragment" data-code-focus="3"></span>
-              <span class="fragment" data-code-focus="11"></span>
+              <span class="fragment" data-code-focus="5"></span>
+              <span class="fragment" data-code-focus="13"></span>
             </script>
           </section>
           <section data-markdown>
