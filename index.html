@@ -299,21 +299,7 @@
           <section>
             <img src="img/mvc.png" />
             <aside class="notes">
-              <ul>
-                <li>
-                  Problemas quando há muitos controllers e models
-                </li>
-                <li>
-                  Models e controllers comunicando uns com os outros (perde controle de quem alterou o que)
-                </li>
-                <li>
-                  Problemas com modificação de estado via requisição à API e usuário mudando tela
-                </li>
-                <li>
-                  Não há uma fonte única de dados da aplicação em determinada situação
-                </li>
-              </ul>
-              What the problem with MVW? MVW is easy to manage in a simple application, with few models/controllers. But
+              <!-- What the problem with MVW? MVW is easy to manage in a simple application, with few models/controllers. But
               we can easily start to witness problems as we grow in size with the following problems: There is need when
               models/controllers communicate with each others (through a service layer probably), and these modules
               changes the states of each others, and the more controllers, the more easy to lose control of who changed
@@ -325,8 +311,24 @@
               google docs for examples) where lots of data changes happening in real-time. No way to do undo (travel
               back in time) easily without adding so much extra code. We can summarize the above as : “There is no
               single source of truth of the applications at any given time.”, and at any give time we cannot know how
-              the UI will be, and this create non-determinism UI.
+              the UI will be, and this create non-determinism UI. -->
             </aside>
+          </section>
+          <section>
+            <ul>
+              <li class="fragment">
+                Problemas quando há muitos controllers e models
+              </li>
+              <li class="fragment">
+                Models e controllers comunicando uns com os outros (perde controle de quem alterou o que)
+              </li>
+              <li class="fragment">
+                Problemas com modificação de estado via requisição à API e usuário mudando tela
+              </li>
+              <li class="fragment">
+                Não há uma fonte única de dados da aplicação em determinadas situações
+              </li>
+            </ul>
           </section>
         </section>
         <section data-background="img/flux-logo.jpg" data-background-opacity="0.5">
@@ -504,13 +506,16 @@
                 <span class="fragment" data-code-focus="9-11"></span>
             </script>
           </section>
-          <section data-markdown>
-            ### Resumo 
-            - Definir chamada na página
-            
-            - Definir Actions 
-            
-            - Definir Store
+          <section>
+            <h3 style="margin-top: 60px;">Resumo</h3>
+            <img src="img/resumo-flux.png" />
+            <aside class="notes">
+              <ul>
+                <li>Definir chamada na página</li>
+                <li>Definir Actions</li>
+                <li>Definir Store</li>
+              </ul>
+            </aside>
           </section>
         </section>
 
@@ -738,16 +743,9 @@
             <span class="fragment" data-code-focus="2-6"></span>
           </script>
         </section>                        
-        <section data-markdown>
-          <script type="text/template">
-          ### Resumo 
-          
-          - Englobar componente em um ```<Provider>``` <!-- .element: class="fragment" -->
-          - Definir Store <!-- .element: class="fragment" -->
-          - Criar Reducer(s) <!-- .element: class="fragment" -->
-          - Na página, juntar estado e actions (mapStateToProps, mapDispatchToProps) <!-- .element: class="fragment" -->
-          - Definir ActionCreator(s) <!-- .element: class="fragment" -->        
-          </script>
+        <section>
+          <h3>Resumo</h3>
+          <img src="img/resumo-redux.png" height="600px" />
         </section>
         <section>
           <img src="img/redux-flow.webp" />
@@ -839,11 +837,14 @@
         </section>
         <section data-background="img/mobx.png" data-background-opacity="0.3" data-background-size="55%">
           <h2>Resumo</h2>
-          <ul>
-            <li class="fragment">Criar classe que representa Store</li>
-            <li class="fragment">Anotar atributos com <code>@observable</code></li>
-            <li class="fragment">Na página que irá observar as mudanças, anotar com <code>@observer</code></li>
-          </ul>
+          <img src="img/resumo-mobx.png" />
+          <aside class="notes">
+            <ul>
+              <li>Criar classe que representa Store</li>
+              <li>Anotar atributos com <code>@observable</code></li>
+              <li>Na página que irá observar as mudanças, anotar com <code>@observer</code></li>
+            </ul>
+          </aside>
         </section>
 
         <section>
@@ -851,10 +852,10 @@
           <ul>
             <li class="fragment">Por que usar flux?</li>
             <div class="fragment">
-              <li>gerenciar informacoes da aplicacao</li>
+              <li>Gerenciar informações da aplicação</li>
               <ul>
-                <li>entrada de dados do usuario</li>
-                <li>dados de uma api</li>
+                <li>entrada de dados do usuário</li>
+                <li>consumir dados de uma api</li>
                 <li>ações do usuário</li>
               </ul>
             </div>
@@ -866,7 +867,7 @@
             <li class="fragment">Quando usar flux?</li>
             <ul class="fragment">
               <li>compartilhar estado entre componentes</li>
-              <li>centralizar as regras de negocio da aplicacao</li>
+              <li>centralizar as regras de negócio da aplicação</li>
               <li>informações transitam entre componentes</li>
               <li>agir com efeitos colaterais</li>
             </ul>
@@ -881,106 +882,11 @@
             </ul>
           </aside>
         </section>
-            <!-- 
-conceitos: https://balta.io/blog/angular-redux-ngrx
-
-
-https://www.youtube.com/watch?v=u99tNt3TZf8
-
-
-Se você bate numa API na pagina X, pega um dado, salva ele, depois navega para uma página Z e precisa desse dado, ou você tem que passar esse dado por parametro até a pagina Z (isso pode ficar confuso se forem muitos dados) ou você salva num estado global e acessa esse estado ná pagina Z
-
-
-props = imutaveis
-
-
-===========================================================
-
-pode ser usado em qualquer aplicacao js
-
-serve para gerenciar os dados / informacoes da aplicacao
- - entrada de dados do usuario
- - dados de uma api
- - ações do usuário
-
-controlar como a aplicacao deve se comportar baseado na mudança destes dados
-
-quando usar?
-
-- compartilhar estado entre componentes
-- centralizar as regras de negocio da aplicacao
-
-informações transitam entre componentes
-
-agir com efeitos colaterais
-- efeitos colaterais:
-  acao em um componente faz outro componente reagir (clique de um botao faz dados serem carregados)
-
-
-
-
-context api resolve o que?
-- passagem de props para diversos componentes
-
-
-https://www.cabotsolutions.com/2017/01/detailed-study-flux-react-js-application-architecture
-
-
-Global State/Store Unified Theory
-
-- A store records items in different ways
-- you can read from store directly or using selectors
-- you can write/update store directly or using updaters
-- components can subscribe to store to receive updates
-
-
-React Context
-- you decide what do use as your store
-- you read from context using useContext
-- you write/update context using some provided updater function from useContext
-- you subscribe your components using useContext
-
-
-Redux
-- redux has one store that can be flattened (normalizr) or nested
-- you can read using selectors, simple functions that access store data (check reselect)
-- you can write/update using dispatch actions, you "can't" modify store directly
-- you subscribe using HOC or hooks
-
-
-MobX
-- you can have many stores
-- you use @observer, or HOC or hooks to read data from store
-- you mutate your observed values to modify store
-- you subscribe using @observer or hooks
-
-
-State Charts (XState)
-- you store is a state machine
-- you read using hooks (useMachine), current.matches
-- you write/update state using send/transition commands
-- you subscribe using hooks, or interpret + onTransition
-
-
-@RelayModern 
-- relay store (https://medium.com/@sibelius/relay-modern-the-relay-store-8984cd148798 …) normalizes your graphql data using global id of each node
-- you can read from store using graphql fragments/queries
-- you can write/update using graphql mutations, or updater logic
-- you subscribe with containers or hooks
-
-
-
-https://hackernoon.com/avoiding-accidental-complexity-when-structuring-your-app-state-6e6d22ad5e2a
-
-interessante: imagens e conceitos ->
-
-https://www.cabotsolutions.com/2017/01/detailed-study-flux-react-js-application-architecture
-
--->
-        <section data-background="img/react-logo.jpeg" data-background-opacity="0.4">
+        <section>
           <h1>THE END</h1>
           <p>Apresentação disponível em: <a href="http://studiojms.github.io/react-flux-presentation">http://studiojms.github.io/react-flux-presentation</a></p>
           <p>Implementação exemplo: <a href="https://github.com/studiojms/react-flux">https://github.com/studiojms/react-flux</a></p>
+          <p>Implementação rodando: <a href="https://studiojms.github.io/react-flux/">https://studiojms.github.io/react-flux/</a></p>
         </section>
       </div>
     </div>
