@@ -316,7 +316,7 @@
           </section>
           <section>
             <ul>
-              <li class="fragment">
+              <li>
                 Problemas quando há muitos controllers e models
               </li>
               <li class="fragment">
@@ -457,9 +457,9 @@
               ```js
               class MyPage extends React.Component {
                 componentDidMount() {
-                  MyStore.addChangeListener(this.onChange);
+                  ItemStore.addChangeListener(this.onChange);
                   //...
-                  MyStore.list();
+                  ItemStore.list();
                 }
 
                 render() {
@@ -710,8 +710,11 @@
 
             function Page({ items, currentText, addItem, clearItems, changeText }) {
               //...
-              <input type="text" onChange={changeText} ... />
+              <input type="text" onChange={changeText} value={currentText} />
               <button onClick={addItem} ... />
+              <ul>
+                {items.map((item, idx) => <li key={idx}>{item}</li>)}
+              </ul>
               <div>
               //...
             }
@@ -728,7 +731,8 @@
             <span class="fragment" data-code-focus="22"></span>
             <span class="fragment" data-code-focus="24"></span>
             <span class="fragment" data-code-focus="25"></span>
-            <span class="fragment" data-code-focus="30-32"></span>
+            <span class="fragment" data-code-focus="27"></span>
+            <span class="fragment" data-code-focus="33-35"></span>
           </script>
         </section>   
         <section data-markdown>
@@ -776,7 +780,7 @@
             <li class="fragment">forma de trabalho parecida com orientação a objetos</li>
             <li class="fragment">abstrai a complexidade de <strong>Dispatch</strong> e <strong>Notify</strong> das implementações flux</li>
             <li class="fragment">permite múltiplas stores</li>
-            <li class="fragment">seu uso se baseia no pattern <strong>Observer</strong></li>
+            <li class="fragment">seu uso se baseia no <em>design pattern</em> <strong>Observer</strong></li>
           </ul>
         </section>
         <section data-background="img/mobx.png" data-background-opacity="0.3" data-background-size="55%">
@@ -802,6 +806,21 @@
         </section>
         <section data-markdown>
           <script type="text/template">
+            ### .babelrc
+            ```js
+            {
+              "presets": ["@babel/preset-env", "@babel/preset-react"],
+              "plugins": [
+                ["@babel/plugin-proposal-decorators", { "legacy": true }],
+                ["@babel/plugin-proposal-class-properties", { "loose": true }]
+              ]
+            }
+            ```
+            <span class="fragment" data-code-focus="4"></span>
+          </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
             ### Page.js
 
             ```js
@@ -817,6 +836,9 @@
                 } 
                 value={ItemStore.currentText} ... />
                 <button onClick={() => ItemStore.addItem()} ... />
+                <ul>
+                  {ItemStore.items.map((item, idx) => <li key={idx}>{item}</li>)}
+                </ul>
                 <div>
                 //...
               }
@@ -827,6 +849,7 @@
             <span class="fragment" data-code-focus="9"></span>
             <span class="fragment" data-code-focus="11"></span>
             <span class="fragment" data-code-focus="12"></span>
+            <span class="fragment" data-code-focus="14"></span>
           </script>
         </section>
         <section data-markdown>
@@ -888,7 +911,7 @@
         <section>
           <h2>Conclusão</h2>
           <ul>
-            <li class="fragment">Quando usar flux?</li>
+            <li>Quando usar flux?</li>
             <ul class="fragment">
               <li>compartilhar estado entre componentes</li>
               <li>centralizar as regras de negócio da aplicação</li>
@@ -906,7 +929,7 @@
             </ul>
           </aside>
         </section>
-        <section>
+        <section data-background="img/computer-grayscale.jpg" data-background-opacity="0.4">
           <h1>THE END</h1>
           <p>Apresentação disponível em: <a href="http://studiojms.github.io/react-flux-presentation">http://studiojms.github.io/react-flux-presentation</a></p>
           <p>Implementação exemplo: <a href="https://github.com/studiojms/react-flux">https://github.com/studiojms/react-flux</a></p>
