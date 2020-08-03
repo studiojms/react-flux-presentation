@@ -151,7 +151,7 @@
             <img src="img/virtual-dom.png" />
           </section>
         </section>
-        <section>
+        <section data-background="img/concept.png" data-background-opacity="0.1">
           <h2>Principais Conceitos</h2>
           <section data-background="img/concept.png" data-background-opacity="0.2"></section>
           <section data-background="img/jsx.png" data-background-opacity="0.5">
@@ -163,7 +163,7 @@
               </ul>
             </aside>
           </section>
-          <section data-markdown>
+          <section data-markdown data-background="img/concept.png" data-background-opacity="0.1">
             <script type="text/template">
               ### Objetivo: Renderizar o código
   
@@ -178,7 +178,7 @@
               ```
             </script>
           </section>
-          <section data-markdown>
+          <section data-markdown data-background="img/concept.png" data-background-opacity="0.1">
             <script type="text/template">
               ### Com JSX
               ```html
@@ -196,7 +196,7 @@
               <span class="fragment" data-code-focus="1,9"></span>
             </script>
           </section>
-          <section data-markdown>
+          <section data-markdown data-background="img/concept.png" data-background-opacity="0.1">
             <script type="text/template">
               ### Sem JSX
               ```js
@@ -250,13 +250,13 @@
             <h3>Exemplos de componentes</h3>
           </section>
           <section>
-            <img src="img/react-app-1.png" />
+            <img src="img/component_01.jpeg" />
           </section>
           <section>
-            <img src="img/react-app-2.jpeg" />
+            <img src="img/component_02.jpeg" />
           </section>  
         </section>
-        <section data-background="img/state-without-flux.png" data-background-opacity="0.3">
+        <section data-background="img/state-without-flux.png" data-background-opacity="0.1">
           <h2>Estado compartilhado</h2>
           <section>
             <img class="fragment" src="img/data-flow-react.jpg" height="500" />
@@ -287,11 +287,11 @@
             </ul>
           </section>
         </section>
-        <section>
+        <section data-background="img/concept.png" data-background-opacity="0.1">
           <h2>Como resolver este problema?</h2>
           <p>Como coordenar as ações para executarem em um fluxo?</p>
         </section>
-        <section>
+        <section data-background="img/concept.png" data-background-opacity="0.1">
           <h2>MVC</h2>
           <section>
             <img src="img/mvc-details.png" />
@@ -320,7 +320,7 @@
                 Problemas quando há muitos controllers e models
               </li>
               <li class="fragment">
-                Models e controllers comunicando uns com os outros (perde controle de quem alterou o que)
+                Comunicação Models x Controllers -> perda de controle de quem alterou o que
               </li>
               <li class="fragment">
                 Problemas com modificação de estado via requisição à API e usuário mudando tela
@@ -331,7 +331,7 @@
             </ul>
           </section>
         </section>
-        <section data-background="img/flux-logo.jpg" data-background-opacity="0.5">
+        <section data-background="img/flux-logo.jpg" data-background-opacity="0.3">
           <h2>Flux</h2>
           <ul>
             <li class="fragment">Arquitetura</li>
@@ -343,7 +343,7 @@
             </ul>
           </aside>
         </section>
-        <section data-background="img/flux-logo.jpg" data-background-opacity="0.5">
+        <section data-background="img/flux-logo.jpg" data-background-opacity="0.3">
           <h2>Para que serve?</h2>
           <p>Gerenciar os dados da aplicação</p>
           <ul>
@@ -353,7 +353,7 @@
           </ul>
           <p>Controlar como a aplicação deve se comportar com base na mudança destes dados</p>
         </section>
-        <section data-background="img/flux-logo.jpg" data-background-opacity="0.5">
+        <section data-background="img/flux-logo.jpg" data-background-opacity="0.3">
           <h2>Quando devo usar?</h2>
           <ul>
             <li>Compartilhar estado entre componentes</li>
@@ -370,7 +370,7 @@
             </ul>
           </aside>
         </section>
-        <section data-background="img/flux-logo.jpg" data-background-opacity="0.5">
+        <section data-background="img/flux-logo.jpg" data-background-opacity="0.3">
           <img src="img/flux-architecture.png" />
           <aside class="notes">
             <ul>
@@ -382,7 +382,7 @@
           </aside>
         </section>
 
-        <section data-background="img/flux-logo.jpg" data-background-opacity="0.5">
+        <section data-background="img/flux-logo.jpg" data-background-opacity="0.3">
           <img src="img/sharing-state-store-2.gif" />
         </section>
 
@@ -553,13 +553,9 @@
               <ul>
                 <li class="fragment">Implementação mais popular de Flux</li>
                 <li class="fragment">Baseia-se no conceito de imutabilidade</li>
-                <li class="fragment">Criado por Dan Abramov</li>
                 <li class="fragment">Foi adotado pelo facebook como referência de flux</li>
                 <li class="fragment">Rendeu um emprego no core team do React ao criador</li>
               </ul>
-            </div>
-            <div class="fragment">
-              <img src="img/dan-abramov-photo.png" height="300" />
             </div>
           </section>
           <section data-background="img/redux-background.png" data-background-opacity="0.1">
@@ -777,7 +773,7 @@
           <img src="img/redux-flow.webp" />
         </section>
 
-        <section data-background="img/mobx.png" data-background-opacity="0.3" data-background-size="55%">
+        <section data-background="img/mobx.png" data-background-opacity="0.2" data-background-size="55%">
           <h2>Mobx</h2>
           <ul>
             <li class="fragment">biblioteca de gerenciamento de estado</li>
@@ -787,11 +783,11 @@
             <li class="fragment">seu uso se baseia no <em>design pattern</em> <strong>Observer</strong></li>
           </ul>
         </section>
-        <section data-background="img/mobx.png" data-background-opacity="0.3" data-background-size="55%">
+        <section data-background="img/mobx.png" data-background-opacity="0.2" data-background-size="55%">
           <h2>Observer Pattern</h2>
           <img src="img/observer-pattern.png" />
         </section>
-        <section>
+        <section data-background="img/mobx.png" data-background-opacity="0.2" data-background-size="55%">
           <h3>Exemplo</h3>
           <div>
             <ul>
@@ -802,13 +798,13 @@
             <img src="img/items-list.gif" />
           </div>
         </section>
-        <section>
+        <section data-background="img/mobx.png" data-background-opacity="0.2" data-background-size="55%">
           <h3>Dependências</h3>
           <pre><code>yarn add mobx mobx-react</code></pre>
           <em>ou</em>
           <pre><code>npm install mobx mobx-react --save</code></pre>
         </section>
-        <section data-markdown>
+        <section data-markdown data-background="img/mobx.png" data-background-opacity="0.2" data-background-size="55%">
           <script type="text/template">
             ### .babelrc
             ```js
@@ -823,7 +819,7 @@
             <span class="fragment" data-code-focus="4"></span>
           </script>
         </section>
-        <section data-markdown>
+        <section data-markdown data-background="img/mobx.png" data-background-opacity="0.2" data-background-size="55%">
           <script type="text/template">
             ### Page.js
 
@@ -856,7 +852,7 @@
             <span class="fragment" data-code-focus="14"></span>
           </script>
         </section>
-        <section data-markdown>
+        <section data-markdown data-background="img/mobx.png" data-background-opacity="0.2" data-background-size="55%">
           <script type="text/template">
             ### ItemStore.js
             ```js
@@ -886,6 +882,10 @@
               <span class="fragment" data-code-focus="8,13"></span>
           </script>
         </section>
+        <section data-background="img/mobx.png" data-background-opacity="0.1" data-background-size="55%">
+          <h2>Comparando com Redux</h2>
+          <img src="img/mobx-vs-redux-ux.png" />
+        </section>
         <section data-background="img/mobx.png" data-background-opacity="0.3" data-background-size="55%">
           <h2>Resumo</h2>
           <img src="img/resumo-mobx.png" />
@@ -898,7 +898,7 @@
           </aside>
         </section>
 
-        <section>
+        <section data-background="img/conclusao.jpg" data-background-opacity="0.1">
           <h2>Conclusão</h2>
           <ul>
             <li class="fragment">Por que usar flux?</li>
@@ -912,7 +912,7 @@
             </div>
           </ul>
         </section>
-        <section>
+        <section data-background="img/conclusao.jpg" data-background-opacity="0.1">
           <h2>Conclusão</h2>
           <ul>
             <li>Quando usar flux?</li>
